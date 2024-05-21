@@ -1,8 +1,8 @@
 #!/bin/bash
 
-number_file="/home/printf/.local/bin/image_number.txt"
-images_dir="/home/printf/repos/notes/attachments/"
-config_file="/home/printf/.config/flameshot/flameshot.ini"
+number_file="/home/$USER/.local/bin/image_number.txt"
+images_dir="/home/$USER/repos/notes/attachments/"
+config_file="/home/$USER/.config/flameshot/flameshot.ini"
 
 # Read the number from image_number.txt
 image_number=$(cat $number_file)

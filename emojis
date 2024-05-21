@@ -3,7 +3,7 @@
 
 
 # cd into the offline video directory
-emojiFile="/home/$USER/repos/config/utils/emojis"
+emojiFile="/home/$USER/.local/share/emojis"
 
 # get the dmenu response of the answer
 # if the user presses 'q', nothing is received
