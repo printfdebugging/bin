@@ -40,7 +40,7 @@ if [ -n "$browser_name" ]; then
         notify-send -r 123455 -t 800 $bookmarkImage "Bookmarks" "$window_title\n\n$clipboard"
 
     # Copy to primary and clipboard selections
-    echo "$clipboard" | xclip -selection clipboard
-    echo "$clipboard" | xclip -selection primary
+    echo "[[$clipboard][$window_title]]" | xclip -selection clipboard
+    echo "[[$clipboard][$window_title]]" | xclip -selection primary
 fi
 

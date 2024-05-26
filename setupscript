@@ -28,7 +28,7 @@ do
         # command -v brave && brave &
         # command -v code && code &
         # command -v obsidian && obsidian &
-        command -v thunderbird && thunderbird &
+        # command -v thunderbird && thunderbird &
         once=1
     fi
 
