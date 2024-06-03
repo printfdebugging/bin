@@ -19,19 +19,6 @@ do
     percentage=$(cat /sys/class/power_supply/BAT0/capacity)
     charging=$(cat /sys/class/power_supply/BAT0/status | grep "Charging")
 
-    # # keep thunderbird running on the 9th tag
-    # if [ -z "$(pgrep thunderbird)" ]; then
-    #     thunderbird &
-    # fi
-
-    if [ $once -ne 1 ]; then
-        # command -v brave && brave &
-        # command -v code && code &
-        # command -v obsidian && obsidian &
-        # command -v thunderbird && thunderbird &
-        once=1
-    fi
-
     # notify me
     alaram
 
