@@ -54,9 +54,9 @@ systemctl restart libvirtd.service
 #
 #
 # ####### for nested virtual machines  #########
-sudo modprobe -r kvm_intel
-sudo modprobe kvm_intel nested=1# 
-echo "options kvm-intel nested=1" | sudo tee /etc/modprobe.d/kvm-intel.conf
+sudo modprobe -r kvm_amd
+sudo modprobe kvm_amd nested=1# 
+echo "options kvm-amd nested=1" | sudo tee /etc/modprobe.d/kvm-intel.conf
 #
 #
 #

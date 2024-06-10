@@ -17,6 +17,7 @@ window_class=$(xprop -id "$focused_window_id" | grep "WM_CLASS" | awk '{print $4
 # Check if the window is identified as a browser
 isBrave=$(echo "$window_class" | grep -iE "brave-browser") # check case insensitively
 isFirefox=$(echo "$window_class" | grep -iE "firefox")
+isChromium=$(echo "$window_class" | grep -iE "chromium")
 
 # Display debug information via notify-send
 # notify-send "Window Title: $window_title" "Window Class: $window_class"
@@ -25,6 +26,8 @@ if [ -n "$isBrave" ]; then
     browser_name="Brave"
 elif [ -n "$isFirefox" ]; then
     browser_name="Firefox"
+elif [ -n "$isChromium" ]; then
+    browser_name="Chromium"
 else
     browser_name=""
 fi
