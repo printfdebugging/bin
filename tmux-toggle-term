@@ -1,0 +1,28 @@
+#!/bin/bash
+
+LIST_PANES="$(tmux list-panes -F '#F' )"
+PANE_COUNT="$(echo "${LIST_PANES}" | wc -l)"
+CURRENT_PANE="$(tmux display -p '#{pane_index}')"
+
+if [ "${PANE_COUNT}" = 1 ]; then
+  tmux split-window -c "#{pane_current_path}"
+  tmux resize-pane -y 30%
+
+  if [ "$(echo ${@})" != "" ]; then
+    tmux send-keys "$(echo ${@})" Enter
+  fi
+  exit
+fi
+
+if [ ${CURRENT_PANE} -eq 0 ]; then
+  tmux select-pane -t:.-
+  if [ "$(echo ${@})" != "" ]; then
+    tmux send-keys "$(echo ${@})" Enter
+  fi
+fi
+
+
+if [ ${CURRENT_PANE} -eq 1 ]; then
+  tmux select-pane -t:.-
+  tmux resize-pane -Z
+fi
