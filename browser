@@ -3,9 +3,9 @@
 if [ "$OSTYPE" == "linux-gnu" ]; then
     source /etc/os-release
     case "$ID" in
-        void)   chromium ;;
-        arch)   brave ;;
-        ubuntu) chromium ;;
-        *)      echo "unsupported distribution" && exit 1 ;;
+    void) chromium "$@" ;;
+    arch) brave "$@" ;;
+    ubuntu) chromium "$@" ;;
+    *) echo "unsupported distribution" && exit 1 ;;
     esac
 fi

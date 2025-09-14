@@ -14,4 +14,4 @@ notify-send -i $bookmarkIcon "$result"
 echo "$result" | xclip -selection clipboard
 echo "$result" | xclip -selection primary
 # open only if some bookmark is selected
-[ -n "$selection" ] && chromium $result
+[ -n "$selection" ] && browser $result
