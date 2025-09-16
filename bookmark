@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Directory for storing bookmark files
-bookmarks_file="/home/$USER/repos/logs/bookmarks.md"
+bookmarks_file="/media/projects/logs/bookmarks.md"
 icondir="/home/$USER/.local/share/icons/"
 
 # Check if the bookmarks directory and files exist
@@ -34,16 +34,15 @@ fi
 
 if [ -n "$browser_name" ]; then
     # Run the xdotool commands
-    /usr/bin/xdotool key --clearmodifiers ctrl+l key ctrl+c key Escape 
+    /usr/bin/xdotool key --clearmodifiers ctrl+l key ctrl+c key Escape
 
     # Since we ran the xdotool commands, there has to be something on the clipboard
     clipboard=$(xclip -sel clipboard -o)
 
-    echo "- [$window_title]($clipboard)" >> "$bookmarks_file" && \
+    echo "- [$window_title]($clipboard)" >>"$bookmarks_file" &&
         notify-send -r 123455 -t 800 $bookmarkImage "Bookmarks" "$window_title\n\n$clipboard"
 
     # Copy to primary and clipboard selections
     echo "$clipboard" | xclip -selection clipboard
     echo "$clipboard" | xclip -selection primary
 fi
-
