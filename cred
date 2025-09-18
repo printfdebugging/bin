@@ -15,7 +15,10 @@ password_files=("${password_files[@]%.gpg}")
 
 password=$(printf '%s\n' "${password_files[@]}" | dmenu -p "Account: " -l 15 -vi "$@")
 
-[[ -n $password ]] || exit
+if ! [[ -n $password ]]; then
+    notify-send "need to select an account!"
+    exit
+fi
 
 pass_cmd=show
 if pass show "$password" | grep -q '^otpauth://'; then
