@@ -7,14 +7,15 @@ projects_directory="/media/projects"
 export FZF_DEFAULT_OPTS="
 --color=marker:#d08770,fg+:#eceff4,prompt:#bf616a,hl+:#5e81ac
 --layout=reverse
---border
+--border sharp
+--margin=0,40%,0,0
 --info=inline
 --prompt='Select a project: '
 --height=20%
 "
 
 # use fzf to select a project
-project=$(cd "$projects_directory" && find . -maxdepth 1 -mindepth 1 | fzf)
+project=$(cd "$projects_directory" && ls | fzf)
 
 # Check if a selection was made
 if [[ -n "$project" ]]; then
