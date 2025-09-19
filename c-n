@@ -1,3 +1,0 @@
-#!/bin/bash
-
-tmux popup -w 80% -h 80% -EE "cd /media/projects/logs && nvim /media/projects/logs/index.txt"
