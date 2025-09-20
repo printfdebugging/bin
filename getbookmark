@@ -1,14 +1,39 @@
 #!/bin/bash
-# I need to learn xclip xdotool ... (maybe at my job)
 
 bookmarkFile="/media/projects/logs/bookmarks.md"
+[ -f "$bookmarkFile" ] || {
+    notify-send "bookmarks" "file not found"
+    exit 1
+}
 
-[ -f $bookmarkFile ] && true || notify-send -i $bookmarkIcon "Bookmarks" "file not found"
-cat $bookmarkFile | dmenu -i -l 15 -vi | xclip -selection -clipboard
-selection=$(xclip -o)
-result=$(echo "$selection" | awk -F'[()]' '{print $(NF-1)}')
-notify-send "$result"
-echo "$result" | xclip -selection clipboard
-echo "$result" | xclip -selection primary
-# open only if some bookmark is selected
-[ -n "$selection" ] && browser $result
+# extract labels and map back to full lines
+mapfile -t labels < <(
+    awk -F'[][]' '
+        match($0, /\[[^]]+\]/) {
+            label = substr($0, RSTART + 1, RLENGTH - 2)
+            if (length(label) > 120)
+                label = substr(label, 1, 120) "...";
+            print label
+        }
+    ' "$bookmarkFile"
+)
+
+# show in dmenu
+selection=$(printf "%s\n" "${labels[@]}" | dmenu -i -l 15 -vi)
+
+# exit if no selection
+[ -z "$selection" ] && exit 0
+
+# find the matching full line from the original file
+fullLine=$(grep -F "[$selection]" "$bookmarkFile")
+
+# extract url inside ( )
+url=$(echo "$fullLine" | awk -F'[()]' '{print $(NF-1)}')
+
+# notify and copy
+notify-send "opening bookmark" "$url"
+echo "$url" | xclip -selection clipboard
+echo "$url" | xclip -selection primary
+
+# open in browser if url found
+[ -n "$url" ] && browser "$url"
