@@ -18,7 +18,7 @@ function add-qr() {
     fi
 
     # ask the user for password name
-    name="$(dmenu -p "Enter Password Name: " </dev/null)"
+    name="$(dmenu -p "otp/" </dev/null)"
     if [ "$name" == "" ]; then
         notify-send "password name is required!"
         cleanup-image
@@ -26,7 +26,7 @@ function add-qr() {
     fi
 
     # add the password to pass
-    pass otp insert "$name" <<<"$url"
+    pass otp insert "otp/$name" <<<"$url"
     notify-send "added $name to passwords"
     cleanup-image
 }
@@ -39,7 +39,7 @@ function type-pass() {
     password_files=("${password_files[@]%.gpg}")
 
     # ask user to select password name from dmenu
-    password=$(printf '%s\n' "${password_files[@]}" | dmenu -p "account: " -l 15)
+    password=$(printf '%s\n' "${password_files[@]}" | dmenu -l 15)
     if ! [[ -n "$password" ]]; then
         notify-send "need to select an account!"
         exit
