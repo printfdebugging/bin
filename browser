@@ -1,8 +1,8 @@
 #!/bin/bash
 
 if [ "$OSTYPE" == "linux-gnu" ]; then
-    command -v firefox >/dev/null && firefox && return
-    command -v chromium >/dev/null && chromium && return
-    command -v brave >/dev/null && brave && return
+    command -v firefox >/dev/null && firefox "$@" && return
+    command -v chromium >/dev/null && chromium "$@" && return
+    command -v brave >/dev/null && brave "$@" && return
     echo "no browser found" && exit
 fi
