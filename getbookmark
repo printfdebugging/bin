@@ -19,7 +19,7 @@ mapfile -t labels < <(
 )
 
 # show in dmenu
-selection=$(printf "%s\n" "${labels[@]}" | dmenu -i -l 15 -vi)
+selection=$(printf "%s\n" "${labels[@]}" | dmenu -i -l 10 -vi)
 
 # exit if no selection
 [ -z "$selection" ] && exit 0
