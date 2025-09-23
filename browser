@@ -1,11 +1,8 @@
 #!/bin/bash
 
 if [ "$OSTYPE" == "linux-gnu" ]; then
-    source /etc/os-release
-    case "$ID" in
-    void) chromium "$@" ;;
-    arch) brave "$@" ;;
-    ubuntu) chromium "$@" ;;
-    *) echo "unsupported distribution" && exit 1 ;;
-    esac
+    command -v firefox >/dev/null && firefox && return
+    command -v chromium >/dev/null && chromium && return
+    command -v brave >/dev/null && brave && return
+    echo "no browser found" && exit
 fi
