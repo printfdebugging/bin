@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Directory for storing bookmark files
-bookmarks_file="/media/projects/logs/bookmarks.md"
+bookmarks_file="/media/projects/journal/logs/bookmarks.txt"
 icondir="/home/$USER/.local/share/icons/"
 
 # Check if the bookmarks directory and files exist
