@@ -39,7 +39,7 @@ function type-pass() {
     password_files=("${password_files[@]%.gpg}")
 
     # ask user to select password name from dmenu
-    password=$(printf '%s\n' "${password_files[@]}" | dmenu -l 10)
+    password=$(printf '%s\n' "${password_files[@]}" | dmenu -l 10 -p "Account: ")
     if ! [[ -n "$password" ]]; then
         notify-send "need to select an account!"
         exit
