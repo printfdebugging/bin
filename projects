@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Set the projects code directory
-projects_directory="/media/projects"
+projects_directory="$HOME/repos"
 
 # Customize fzf appearance
 export FZF_DEFAULT_OPTS="
