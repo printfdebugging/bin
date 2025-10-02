@@ -1,6 +1,6 @@
 #!/bin/bash
 
-bookmarkFile="$JOURNAL_DIR/logs/bookmarks.txt"
+bookmarkFile="$JOURNAL_DIR/bookmarks.txt"
 [ -f "$bookmarkFile" ] || {
     notify-send "bookmarks" "file not found"
     exit 1
