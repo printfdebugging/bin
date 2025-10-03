@@ -11,8 +11,6 @@ mapfile -t labels < <(
     awk -F'[][]' '
         match($0, /\[[^]]+\]/) {
             label = substr($0, RSTART + 1, RLENGTH - 2)
-            if (length(label) > 155)
-                label = substr(label, 1, 155) "...";
             print label
         }
     ' "$bookmarkFile"
