@@ -1,6 +1,15 @@
 #!/bin/bash
 
-xrandr --output HDMI-A-0 --mode 1920x1080 --primary
-xrandr --output HDMI-A-1-1 --mode 1920x1080 --right-of HDMI-A-0
+left_connected=$(xrandr -q | grep " connected" | grep "HDMI-A-0")
+right_connected=$(xrandr -q | grep " connected" | grep "HDMI-A-1-1")
 
-xwallpaper --zoom "$HOME/.local/share/wallpapers/second.jpg"
+[ "$left_connected" != "" ] && {
+    xrandr --output HDMI-A-0 --mode 1920x1080 --primary
+    xrandr --output HDMI-A-1-1 --mode 1920x1080 --right-of HDMI-A-0
+    xwallpaper --zoom "$HOME/.local/share/wallpapers/second.jpg"
+}
+
+[ "$right_connected" != "" ] && {
+    xrandr --output HDMI-A-1-1 --mode 1920x1080
+    xwallpaper --zoom "$HOME/.local/share/wallpapers/second.jpg"
+}
